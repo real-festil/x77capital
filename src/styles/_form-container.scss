@@ -1,0 +1,72 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 304px;
+  height: max-content;
+  margin: 0 auto;
+  margin-top: 126px;
+
+  align-items: center;
+
+  font-size: 40px;
+  line-height: 54px;
+
+  .heading {
+    margin: 18px 0 0 0;
+
+    font-weight: bold;
+    color: #1a445c;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      &__label {
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 27px;
+        color: #333333;
+      }
+
+      .MuiInputBase-input {
+        height: 46px;
+        padding: 0 13px;
+      }
+    }
+
+    .input-container,
+    .button-continuum,
+    .text-helper,
+    .recaptcha {
+      margin-top: 19px;
+    }
+
+    .button-continuum {
+      width: 304px;
+      height: 43px;
+      background: #1a445c;
+
+      &__text {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 25px;
+        color: #ffffff;
+      }
+    }
+    .text-helper {
+      width: max-content;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 19px;
+      color: #eb5757;
+    }
+  }
+}

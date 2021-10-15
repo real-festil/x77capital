@@ -1,0 +1,32 @@
+.left-side-bar {
+  min-width: 278px;
+  max-width: 410px;
+
+  &__menu {
+    .title {
+      margin-bottom: 24px;
+    }
+
+    .add-transaction {
+      margin-bottom: 38px;
+    }
+
+    .link-container {
+      display: flex;
+      flex-direction: column;
+
+      &__link {
+        margin-left: 10px;
+      }
+
+      &__link:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .MuiDivider-root {
+    margin: 40px 26px 40px 0;
+    background: #c4c4c4;
+  }
+}

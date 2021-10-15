@@ -1,0 +1,30 @@
+.right-side-bar {
+  max-width: 384px;
+  max-width: 313px;
+
+  &__menu {
+    .title {
+      margin-bottom: 20px;
+    }
+  }
+
+  .following-container {
+    background: #ffffff;
+    opacity: 0.05;
+    &__text {
+    }
+  }
+
+  .button-close {
+    padding: 19px;
+    color: #fff;
+    background: #eb5757;
+
+    &__text {
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 27px;
+      color: #ffffff;
+    }
+  }
+}
