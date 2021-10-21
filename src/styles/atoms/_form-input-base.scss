@@ -1,0 +1,92 @@
+.form-input-base {
+  display: flex;
+  flex-direction: column;
+
+  &__label.MuiFormLabel-root,
+  &__input.MuiInputBase-input,
+  &__input.MuiSelect-root {
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: #333333;
+  }
+
+  &__label {
+    &.MuiFormLabel-root {
+      height: 27px;
+
+      font-size: 20px;
+      line-height: 27px;
+    }
+  }
+
+  &__input {
+    width: 389px;
+
+    background: #ffffff;
+    border-radius: 0 !important ;
+
+    .MuiSelect-root {
+      display: flex;
+
+      font-size: 18px !important;
+      align-items: center;
+    }
+
+    &.MuiOutlinedInput-adornedEnd {
+      padding-right: 0;
+    }
+
+    .MuiInputAdornment-root {
+      margin-right: 18px;
+    }
+
+    .MuiOutlinedInput-root {
+      box-sizing: border-box;
+      border: 1px solid #1a445c;
+    }
+
+    .MuiOutlinedInput-root.Mui-error {
+      border: none;
+    }
+
+    .MuiInputBase-input {
+      height: 46px;
+      padding: 0 18px;
+
+      font-size: 14px;
+      line-height: 19px;
+    }
+  }
+
+  &__width,
+  &__select {
+    &.MuiFormControl-fullWidth,
+    .form-input-base__input {
+      width: 250px;
+    }
+  }
+
+  &.form-input-base__comments {
+    &,
+    .form-input-base__input {
+      width: 100%;
+    }
+
+    .MuiInputBase-root {
+      height: 95px;
+      align-items: baseline;
+    }
+  }
+}
+
+.full-width {
+  &,
+  .form-input-base__input {
+    width: 100%;
+  }
+}
+
+.margin-center {
+  margin-right: 34px;
+}

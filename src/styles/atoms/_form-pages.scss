@@ -1,0 +1,13 @@
+.form-pages {
+  &__sector {
+    margin-top: 20px;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

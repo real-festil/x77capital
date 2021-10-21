@@ -6,15 +6,17 @@
   height: max-content;
   margin: 0 auto;
   margin-top: 126px;
-
   align-items: center;
 
   font-size: 40px;
   line-height: 54px;
 
+  width: auto;
+
   .heading {
     margin: 18px 0 0 0;
 
+    list-style: inherit;
     font-weight: bold;
     color: #1a445c;
   }

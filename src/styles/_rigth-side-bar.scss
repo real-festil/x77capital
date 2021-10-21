@@ -1,7 +1,7 @@
 .right-side-bar {
   max-width: 384px;
   max-width: 313px;
-
+  color: #fff;
   &__menu {
     .title {
       margin-bottom: 20px;
@@ -9,22 +9,59 @@
   }
 
   .following-container {
-    background: #ffffff;
-    opacity: 0.05;
+    &,
+    &__folow {
+      display: flex;
+    }
+
+    height: 57px;
+    align-items: center;
+    margin: 18px -40px;
+    padding: 0 40px;
+    background: #254e64;
+
+    &__folow__off,
+    &__folow__on {
+      display: flex;
+      cursor: pointer;
+      justify-content: center;
+      width: 33px;
+
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 19px;
+
+      color: #1a445c;
+      background: #fff;
+      border: 1px solid #ffffff;
+      box-sizing: border-box;
+    }
+
+    &__folow__on.active,
+    &__folow__off.active {
+      background: #1a445c;
+      color: #fff;
+    }
+
+    &__trading {
+      margin-top: 0;
+    }
+
     &__text {
+      margin-left: 22px;
+      font-size: 18px;
+      line-height: 25px;
     }
   }
 
   .button-close {
     padding: 19px;
-    color: #fff;
     background: #eb5757;
 
     &__text {
       font-weight: normal;
       font-size: 20px;
       line-height: 27px;
-      color: #ffffff;
     }
   }
 }

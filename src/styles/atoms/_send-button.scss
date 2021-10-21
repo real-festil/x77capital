@@ -1,0 +1,13 @@
+.send-button {
+  &.MuiButtonBase-root {
+    width: 168px;
+    height: 43px;
+    color: #fff;
+    background: #1a445c;
+
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
