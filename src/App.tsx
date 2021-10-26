@@ -11,6 +11,8 @@ import ProfitLog from "./pages/ProfitLog";
 import BankAccounting from './pages/BankAccounting';
 import Statistics from './pages/Statistics';
 import SecureP from "./pages/SecureP";
+import Settings from "./pages/Settings";
+import CheckBalance from "./pages/CheckBalance";
 
 function App() {
   return (
@@ -44,6 +46,12 @@ function App() {
             </Route>
             <Route path="/pages/securep" exact>
               <SecureP />
+            </Route>
+            <Route path="/pages/settings" exact>
+              <Settings />
+            </Route>
+            <Route path="/pages/check-balance" exact>
+              <CheckBalance />
             </Route>
             <RightSideBar />
           </div>

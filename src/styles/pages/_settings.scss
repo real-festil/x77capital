@@ -1,0 +1,109 @@
+.settings {
+  &__wrap-select {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 35%;
+      background: #1A445C;
+      color: #fff;
+      font-size: 15px;
+      border-radius: 0;
+      text-transform: none;
+      &:hover {
+        background: #1A445C;
+      }
+    }
+    .settings__wrap-search {
+      display: block;
+      width: 35%;
+      .css-1s2u09g-control {
+        height: 47px;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border: 1px solid #1A445C;
+      }
+      .css-1pahdxg-control {
+        height: 47px;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border: 1px solid #1A445C;
+        box-shadow: none;
+      }
+      .css-1okebmr-indicatorSeparator {
+        display: none;
+      }
+    }
+  }
+  &__select {
+    width: 35%;
+    margin-left: 10px;
+    margin-right: 10px;
+    .MuiSelect-select {
+      font-size: 14px !important;
+      border: 1px solid #1A445C;
+      padding: 13px !important;
+      background: transparent !important;
+    }
+    &::before {
+      border: none;
+      content: none;
+      display: none;
+    }
+    &::after {
+      border-bottom: none !important;
+    }
+  }
+  &__table {
+    margin-top: 20px;
+    &-header {
+      display: flex;
+      p {
+        width: 50%;
+        font-size: 18px;
+        margin-left: 20px;
+      }
+    }
+    &-wrap {
+      width: calc(100% - 40px);
+      max-height: 200px;
+      display: flex;
+      border: 1px solid #1A445C;
+      padding: 20px;
+      padding-top: 0px;
+      overflow-y: scroll;
+      &-item {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        &:nth-child(2) {
+          margin-left: 40px;
+        }
+        .settings__table-item {
+          width: 100%;
+          justify-content: space-between;
+          font-size: 18px;
+          button {
+            font-size: 18px;
+            color: #EB5757;
+            text-transform: none;
+          }
+        }
+      }
+      &::-webkit-scrollbar {
+        width: 2px;
+        right: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #1A445C;
+      }
+    }
+  }
+}
