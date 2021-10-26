@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Field, FieldProps, Form, Formik, FormikErrors } from "formik";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -10,6 +10,9 @@ import {
 } from "@material-ui/core";
 import logo from "../images/icon/logo.svg";
 import { Link } from "react-router-dom";
+import { authUser } from "../common/Inquiries/User";
+import useFetch from "use-http";
+import { API_URL } from "../evn";
 
 interface EntranceProps {}
 interface FormValues {
@@ -37,6 +40,16 @@ const validations = (values: FormValues) => {
 };
 
 const Entrance: React.FC<EntranceProps> = () => {
+  const hookFetchData = useFetch(API_URL);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await authUser(hookFetchData);
+      console.log("res", res);
+    };
+    fetchData();
+  }, []);
+
   const [values, setValues] = useState<FormValues>({
     login: "",
     password: "",
