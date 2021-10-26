@@ -9,6 +9,8 @@ import Arbitrage from "./pages/Arbitrage";
 import OtcLinking from "./pages/OtcLinking";
 import ProfitLog from "./pages/ProfitLog";
 import BankAccounting from './pages/BankAccounting';
+import Statistics from './pages/Statistics';
+import SecureP from "./pages/SecureP";
 
 function App() {
   return (
@@ -36,6 +38,12 @@ function App() {
             </Route>
             <Route path="/pages/bank-accounting" exact>
               <BankAccounting />
+            </Route>
+            <Route path="/pages/statistics" exact>
+              <Statistics />
+            </Route>
+            <Route path="/pages/securep" exact>
+              <SecureP />
             </Route>
             <RightSideBar />
           </div>

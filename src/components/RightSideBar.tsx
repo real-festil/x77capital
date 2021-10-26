@@ -90,7 +90,7 @@ const RightSideBar = () => {
   );
 };
 
-interface IWrapUlTab {
+export interface IWrapUlTab {
   children: JSX.Element | JSX.Element[];
   active: number;
   i: number;
