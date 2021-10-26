@@ -1,0 +1,37 @@
+.bankAccounting__table {
+  max-height: calc(100vh - 300px);
+  table {
+    thead {
+      tr:nth-child(1) {
+        background: #1a445c23;
+        th {
+          font-weight: 400;
+          &:nth-child(1) {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+.bankAccounting__dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  div {
+    width: 50px;
+    height: 13px;
+    cursor: pointer;
+    &:nth-child(1) {
+      background: #1A445C;
+    }
+    &:nth-child(2) {
+      background: #1a445c3f;
+      margin-left: 8px;
+    }
+    &:nth-child(3) {
+      margin-left: 8px;
+      background: #1a445c75;
+    }
+  }
+}

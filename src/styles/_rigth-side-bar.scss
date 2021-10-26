@@ -1,7 +1,12 @@
+div {
+  display: inherit;
+}
+
 .right-side-bar {
   max-width: 384px;
   max-width: 313px;
   color: #fff;
+  display: block;
   &__menu {
     .title {
       margin-bottom: 20px;
@@ -45,6 +50,12 @@
 
     &__trading {
       margin-top: 0;
+      &-wrap {
+        display: flex !important;
+        span {
+          cursor: pointer;
+        }
+      }
     }
 
     &__text {
@@ -64,4 +75,33 @@
       line-height: 27px;
     }
   }
+}
+
+.right-side-bar__text-list {
+  list-style: none !important;
+  padding: 0;
+  padding-left: 10px;
+  max-height: 350px;
+  overflow-y: scroll;
+  li {
+    margin-top: 10px;
+    &:nth-child(1) {
+      margin-top: 0px;
+    }
+  }
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #fff;
+  }
+}
+.activeTab {
+  border-bottom: 2px solid #fff;
+}
+.right-side-bar__text-content {
+  cursor: pointer;
 }

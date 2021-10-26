@@ -27,13 +27,12 @@ const FormSelectBase: React.FC<FormSelectProps> = ({
   return (
     <FormControl fullWidth className={`form-input-base__select ${className}`}>
       <FormLabel className="form-input-base__label">{label}</FormLabel>
-
       <Select
         id="outlined-basic"
         variant="outlined"
         className={`form-input-base__input`}
         value={value}
-        defaultValue={1}
+        defaultValue={menuItem[0]}
         onChange={handleChange}
       >
         {menuItem.map((element, index) => (
