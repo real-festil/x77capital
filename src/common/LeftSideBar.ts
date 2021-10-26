@@ -1,10 +1,10 @@
 export const menu = {
     title: "Menu",
     links: [
-      { name: "Profit log", link: "/" },
-      { name: "Bank Accounting", link: "/" },
-      { name: "Statistics", link: "/" },
-      { name: "SecureP", link: "/" },
+      { name: "Profit log", link: "/pages/profit-log" },
+      { name: "Bank Accounting", link: "/pages/bank-accounting" },
+      { name: "Statistics", link: "/pages/statistics" },
+      { name: "SecureP", link: "/pages/securep" },
       { name: "History", link: "/" },
       { name: "Settings", link: "/" },
     ],
