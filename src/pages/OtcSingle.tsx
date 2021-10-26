@@ -113,7 +113,6 @@ const OtcSingle = () => {
                     />
                   )}
                 </Field>
-                ``
               </Box>
               <Box className="form-pages__box">
                 <Field name="comeOut">
