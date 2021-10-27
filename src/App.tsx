@@ -11,19 +11,24 @@ import ProfitLog from "./pages/ProfitLog";
 import BankAccounting from "./pages/BankAccounting";
 import Statistics from "./pages/Statistics";
 import SecureP from "./pages/SecureP";
+import Settings from "./pages/Settings";
+import CheckBalance from "./pages/CheckBalance";
+import History from "./pages/History";
 
 function App() {
   return (
     <div className="App ">
       <Header />
       <Switch>
+        <Route path="/pages/check-balance" exact>
+          <CheckBalance />
+        </Route>
         <Route path="/login">
           <Entrance typePage="login" />
         </Route>
         <Route path="/reg">
           <Entrance typePage="registration" />
         </Route>
-
         <Route path="/pages">
           <div className="container-organism">
             <LeftSideBar />
@@ -47,6 +52,12 @@ function App() {
             </Route>
             <Route path="/pages/securep" exact>
               <SecureP />
+            </Route>
+            <Route path="/pages/settings" exact>
+              <Settings />
+            </Route>
+            <Route path="/pages/history" exact>
+              <History />
             </Route>
             <RightSideBar />
           </div>

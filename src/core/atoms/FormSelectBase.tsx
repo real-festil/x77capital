@@ -24,6 +24,8 @@ const FormSelectBase: React.FC<FormSelectProps> = ({
   label,
   menuItem,
 }) => {
+  console.log(menuItem[0]);
+
   return (
     <FormControl fullWidth className={`form-input-base__select ${className}`}>
       <FormLabel
