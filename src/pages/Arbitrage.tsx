@@ -43,7 +43,7 @@ const Arbitrage = () => {
     return errors;
   };
 
-  const [valueSelect, setSelect] = React.useState("");
+  const [valueSelect, setSelect] = React.useState("0");
 
   const handleChange = (event: any) => {
     setSelect(event.target.value as string);

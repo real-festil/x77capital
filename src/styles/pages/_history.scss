@@ -1,0 +1,133 @@
+.history {
+  &-btn {
+    max-width: 183px;
+    height: 53px;
+    background: #1A445C !important;
+    color: #fff !important;
+    font-size: 16px !important;
+    font-weight: bold;
+    border-radius: 0 !important;
+    text-transform: none !important;
+    &:nth-child(1) {
+      margin-right: 10px;
+    }
+    &:hover {
+      background: #1A445C !important;
+    }
+  }
+  &__table {
+    margin-top: 20px;
+    td {
+      padding: 0 !important;
+      border-bottom: 1px solid #1A445C;
+      color: #1A445C !important;
+      font-size: 18px !important;
+      h4 {
+        font-weight: normal;
+        font-size: 14px;
+      }
+      p {
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .table-auth {
+        color: #27AE60;
+      }
+    }
+    th {
+      color: #1A445C !important;
+      border-bottom: 1px solid #1A445C;
+    }
+    &-options {
+      display: flex !important;
+      align-items: center;
+      width: 100%;
+      p {
+        font-size: 25px !important;
+        color: #EB5757;
+        cursor: pointer;
+      }
+      img {
+        width: 30px;
+        cursor: pointer;
+        height: 30px;
+        margin-left: 10px;
+        margin-top: -5px;
+      }
+      .icon-open {
+        width: 25px;
+        height: 18px;
+        margin-top:-5px;
+      }
+    }
+  }
+}
+
+.table__head-item {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  color: #1A445C !important;
+}
+
+.table-open-active {
+  transform: rotate(180deg);
+}
+
+.modal {
+  position: fixed;
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background: #1a445ca4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__wrap {
+    width: 600px;
+    height: 270px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    &-close {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 25px;
+      padding-right: 10px;
+      padding-top: 10px;
+      color: #1A445C;
+    }
+    h3 {
+      font-size: 20px;
+      color: #1A445C;
+      font-weight: normal;
+      text-align: center;
+      width: 400px;
+      display: inline-block;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+    &-btns {
+      justify-content: center;
+      margin-top: 80px;
+      button {
+        padding-left: 50px;
+        padding-right: 50px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+    &-btns2 {
+      justify-content: center;
+      margin-top: 70px;
+      button {
+        padding-left: 50px;
+        padding-right: 50px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+  }
+}

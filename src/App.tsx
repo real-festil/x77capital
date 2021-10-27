@@ -13,16 +13,19 @@ import Statistics from './pages/Statistics';
 import SecureP from "./pages/SecureP";
 import Settings from "./pages/Settings";
 import CheckBalance from "./pages/CheckBalance";
+import History from "./pages/History";
 
 function App() {
   return (
     <div className="App ">
       <Header />
       <Switch>
+        <Route path="/pages/check-balance" exact>
+          <CheckBalance />
+        </Route>
         <Route path="/login">
           <Entrance />
         </Route>
-
         <Route path="/pages">
           <div className="container-organism">
             <LeftSideBar />
@@ -50,8 +53,8 @@ function App() {
             <Route path="/pages/settings" exact>
               <Settings />
             </Route>
-            <Route path="/pages/check-balance" exact>
-              <CheckBalance />
+            <Route path="/pages/history" exact>
+              <History />
             </Route>
             <RightSideBar />
           </div>
