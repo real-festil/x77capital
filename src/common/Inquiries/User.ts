@@ -1,13 +1,23 @@
-export const authUser = ({post, loading }: any) => {
+import { API_URL } from "../../evn";
+
+export interface AuthModel  {
+    login: string;
+    password: string | number;
+}
+
+export const authUser = async (values: AuthModel, { post, loading }: any) => {
     const feachData = async () => {
         if (loading) return loading 
         try {
-            const res = await post('/posts', {})
-            localStorage.setItem('token', res.id.toString())
+            const response = await post('structure/auth/token/', {
+                username: values.login,
+                password: values.password
+            })
+            // localStorage.setItem('token', response.id.toString())
 
-            console.log('token', localStorage.getItem ('token'));
+            console.log('response', response);
             
-            return res 
+            return response 
         } catch (error) {
             console.log(error);
         }
@@ -15,13 +25,18 @@ export const authUser = ({post, loading }: any) => {
     return feachData()
 }
 
-
-export const registration = ({post, loading }: any) => {
+export const newUser = (values: AuthModel, {post, loading }: any) => {
     const feachData = async () => {
         if (loading) return loading 
         try {
-            const res = await post('/posts', {})
-            return res 
+            const response = await post('structure/auth/users/', {
+                headers:["Access-Control-Allow-Origin"],
+                username: values.login,
+                password: values.password
+            })
+            console.log('response', response);
+            
+            return response 
         } catch (error) {
             console.log(error);
         }

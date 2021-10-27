@@ -8,8 +8,8 @@ import RightSideBar from "./components/RightSideBar";
 import Arbitrage from "./pages/Arbitrage";
 import OtcLinking from "./pages/OtcLinking";
 import ProfitLog from "./pages/ProfitLog";
-import BankAccounting from './pages/BankAccounting';
-import Statistics from './pages/Statistics';
+import BankAccounting from "./pages/BankAccounting";
+import Statistics from "./pages/Statistics";
 import SecureP from "./pages/SecureP";
 
 function App() {
@@ -18,7 +18,10 @@ function App() {
       <Header />
       <Switch>
         <Route path="/login">
-          <Entrance />
+          <Entrance typePage="login" />
+        </Route>
+        <Route path="/reg">
+          <Entrance typePage="registration" />
         </Route>
 
         <Route path="/pages">
