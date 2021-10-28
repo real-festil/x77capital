@@ -5,8 +5,8 @@ export const menu = {
       { name: "Bank Accounting", link: "/pages/bank-accounting" },
       { name: "Statistics", link: "/pages/statistics" },
       { name: "SecureP", link: "/pages/securep" },
-      { name: "History", link: "/" },
-      { name: "Settings", link: "/" },
+      { name: "History", link: "/pages/history" },
+      { name: "Settings", link: "/pages/settings" },
     ],
   };
 
