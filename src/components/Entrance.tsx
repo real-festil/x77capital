@@ -9,10 +9,9 @@ import {
   FormLabel,
 } from "@material-ui/core";
 import logo from "../images/icon/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { authUser, AuthModel, newUser } from "../common/Inquiries/User";
-import useFetch from "use-http";
-import { API_URL } from "../evn";
+import { useGlobalState } from "../globalState";
 
 interface EntranceProps {
   typePage: "login" | "registration";
@@ -24,53 +23,60 @@ interface FormValues extends AuthModel {
 }
 
 const Entrance: React.FC<EntranceProps> = (props) => {
-  const [values] = useState<FormValues>({
-    login: "",
-    password: "",
-    confirmPassword: "",
-    recaptcha: "",
-  });
-
-  const hookFetchData = useFetch(API_URL);
+  const [, setLoginFollow] = useGlobalState("login");
+  const [errorsFromServer, setErrorsFromServer] = useState("");
+  const history = useHistory();
 
   const authorization = ({ login, password }: AuthModel) => {
     const fetchData = async () => {
-      const res = await authUser({ login, password }, hookFetchData);
+      const response = await authUser({ login, password });
+      setLoginFollow(response);
+      history.push("/pages/profit-log");
     };
     fetchData();
   };
 
-  const registration = (values: any) => {
+  const registration = (values: AuthModel) => {
     const fetchData = async () => {
-      const res = await newUser(values, hookFetchData);
+      const res = await newUser(values);
+      console.log("res ", res);
+      if (res.errors) {
+        res.errors?.password && setErrorsFromServer(res.errors.password[0]);
+        res.errors?.username && setErrorsFromServer(res.errors.username[0]);
+      } else if (res.status === 201) {
+        setLoginFollow(true);
+        history.push("/pages/profit-log");
+      }
     };
     fetchData();
   };
 
-  const onChange = (value: any) => {
+  const onChange = (value: FormValues) => {
     console.log("Captcha value:", value);
+  };
+
+  const onSubmit = (values: FormValues) => {
+    props.typePage === "login" ? authorization(values) : registration(values);
   };
 
   const validations = (values: FormValues) => {
     let errors: FormikErrors<FormValues> = {};
 
     if (!values.login) {
-      errors.login = "Invalid username ";
-      errors.error = "Invalid username and/or password";
+      // errors.login = "Invalid username ";
+      errors.login = "Invalid username and/or password";
     }
-
     if (!values.password) {
-      errors.password = "Invalid  password";
-      errors.error = "Invalid username and/or password";
+      // errors.password = "Invalid  password";
+      errors.password = "Invalid username and/or password";
     }
-
     if (props.typePage === "registration") {
       if (
         !values.confirmPassword ||
         values.confirmPassword !== values.password
       ) {
-        errors.confirmPassword = "Invalid  confirm password";
-        errors.error = "Invalid username and/or password";
+        // errors.confirmPassword = "Invalid  confirm password";
+        errors.confirmPassword = "Invalid username and/or password";
       }
     }
 
@@ -87,13 +93,14 @@ const Entrance: React.FC<EntranceProps> = (props) => {
       </h2>
 
       <Formik
-        initialValues={values}
+        initialValues={{
+          login: "",
+          password: "",
+          confirmPassword: "",
+          recaptcha: "",
+        }}
         validate={validations}
-        onSubmit={(values) =>
-          props.typePage === "login"
-            ? authorization(values)
-            : registration(values)
-        }
+        onSubmit={onSubmit}
       >
         {({ errors, touched }) => (
           <Form className="form-container__form">
@@ -104,13 +111,13 @@ const Entrance: React.FC<EntranceProps> = (props) => {
                     Login
                   </FormLabel>
                   <TextField
-                    {...field}
                     type="login"
                     id="outlined-error"
                     className="input-container__input"
                     variant="outlined"
-                    error={touched.login && !!errors.login}
                     placeholder="Username*"
+                    error={touched.login && !!errors.login}
+                    {...field}
                   />
                 </div>
               )}
@@ -122,13 +129,13 @@ const Entrance: React.FC<EntranceProps> = (props) => {
                     Password
                   </FormLabel>
                   <TextField
-                    {...field}
                     id="outlined-error"
                     className="input-container__input"
                     variant="outlined"
-                    error={touched.password && !!errors.password}
                     type="password"
                     placeholder="Password*"
+                    error={touched.password && !!errors.password}
+                    {...field}
                   />
                 </div>
               )}
@@ -161,7 +168,7 @@ const Entrance: React.FC<EntranceProps> = (props) => {
                 <div className="recaptcha">
                   <ReCAPTCHA
                     sitekey="Your client site key"
-                    onChange={onChange}
+                    // onChange={onChange}
                   />
                 </div>
               )}
@@ -173,7 +180,10 @@ const Entrance: React.FC<EntranceProps> = (props) => {
               </span>
             </ButtonBase>
             <FormHelperText className="text-helper" error={true}>
-              {errors.error}
+              {(touched.login && errors.login) ||
+                (touched.password && errors.password) ||
+                (touched.confirmPassword && errors.confirmPassword) ||
+                errorsFromServer}
             </FormHelperText>
           </Form>
         )}

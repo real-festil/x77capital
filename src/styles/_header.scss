@@ -11,7 +11,9 @@
 
   font-weight: normal;
 
+  .login,
   .log-out {
+    user-select: none;
     cursor: pointer;
     color: #1a445c;
     font-size: 20px;

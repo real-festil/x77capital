@@ -14,8 +14,17 @@ import SecureP from "./pages/SecureP";
 import Settings from "./pages/Settings";
 import CheckBalance from "./pages/CheckBalance";
 import History from "./pages/History";
+import { useEffect } from "react";
+import { useGlobalState } from "./globalState";
 
-function App() {
+const App = () => {
+  const [loginFollow, setLogin] = useGlobalState("login");
+  useEffect(() => {
+    // if (localStorage.token) {
+    //   setLogin(true);
+    // }
+  }, []);
+
   return (
     <div className="App ">
       <Header />
@@ -65,6 +74,6 @@ function App() {
       </Switch>
     </div>
   );
-}
+};
 
 export default App;
