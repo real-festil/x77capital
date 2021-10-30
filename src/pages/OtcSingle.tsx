@@ -107,6 +107,7 @@ const OtcSingle = () => {
                 <Field name="comeOut">
                   {({ field, form: { touched, errors } }: FieldProps) => (
                     <FormSelectBase
+                      label=''
                       menuItem={["Bank-1"]}
                       value={valueSelect}
                       handleChange={handleChange}
@@ -155,6 +156,7 @@ const OtcSingle = () => {
                   {({ field, form: { touched, errors } }: FieldProps) => (
                     <FormSelectBase
                       label="USDT"
+
                       menuItem={["Exchange-1"]}
                       value={valueSelect}
                       handleChange={handleChange}

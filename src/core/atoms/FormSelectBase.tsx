@@ -28,11 +28,9 @@ const FormSelectBase: React.FC<FormSelectProps> = ({
 
     return (
         <FormControl fullWidth className={`form-input-base__select ${className}`}>
-            {label &&
-            <FormLabel className={`form-input-base__label`}>
+            <FormLabel className={`form-input-base__label ${!label && 'form-input-base__not-label'}`}>
                 {label}
             </FormLabel>
-            }
             <Select
                 variant="outlined"
                 className={`form-input-base__input `}
