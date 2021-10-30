@@ -25,19 +25,20 @@ interface FormValues extends AuthModel {
 
 const Entrance: React.FC<EntranceProps> = (props) => {
     const [, setLoginFollow] = useGlobalState("login");
+    const [, setToken] = useGlobalState("token");
     const [errorsFromServer, setErrorsFromServer] = useState("");
     const history = useHistory();
 
     const authorization = ({login, password}: AuthModel) => {
         const fetchData = async () => {
             const response = await authUser({login, password});
-            console.log('response', response);
 
             if (response?.errors) {
                 console.log('response errors', response.errors)
                 setErrorsFromServer(response?.errors.non_field_errors[0])
             } else {
                 localStorage.setItem('token', response.data.token.toString())
+                setToken(response.data.token.toString())
                 setLoginFollow(response);
                 history.push("/pages/profit-log");
             }
@@ -48,7 +49,6 @@ const Entrance: React.FC<EntranceProps> = (props) => {
     const registration = (values: AuthModel) => {
         const fetchData = async () => {
             const res = await newUser(values);
-            console.log("res ", res);
             if (res.errors) {
                 res.errors?.password && setErrorsFromServer(res.errors.password[0]);
                 res.errors?.username && setErrorsFromServer(res.errors.username[0]);

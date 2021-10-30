@@ -31,13 +31,9 @@ const OtcLinking = () => {
     }
 
     if (!values.comeIn) {
-      console.log("test comeIn", values.comeIn);
-
       errors.comeIn = "Invalid comeIn";
     }
     if (!values.comments) {
-      console.log("test comments", values.comments);
-
       errors.comments = "Invalid comments";
     }
     return errors;

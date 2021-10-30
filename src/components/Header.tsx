@@ -6,16 +6,16 @@ import {useGlobalState} from "../globalState";
 
 const Header = () => {
     const [loginFollow, setLoginFollow] = useGlobalState("login");
+    const [token, setToken] = useGlobalState("token");
+
     const history = useHistory();
 
     const logOut = async () => {
-        const out = await logout(
-            localStorage.token && localStorage.getItem("token")
-        );
+        const out = await logout(token);
         if (out) {
             setLoginFollow(false);
             localStorage.removeItem("token");
-            history.push("/pages/profit-log");
+            history.push("/login");
         }
     };
 
