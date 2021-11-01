@@ -1,6 +1,12 @@
 .form-input-base {
   display: flex;
   flex-direction: column;
+  width: 60%;
+  margin-right: 10px;
+
+  &__select.MuiFormControl-fullWidth {
+    width: 40%;
+  }
 
   &__label.MuiFormLabel-root,
   &__input.MuiInputBase-input,
@@ -23,7 +29,7 @@
   }
 
   &__input {
-    width: 389px;
+    width: 100%;
 
     background: #ffffff;
     border-radius: 0 !important ;
@@ -59,17 +65,20 @@
       font-size: 14px;
       line-height: 19px;
     }
+
+
   }
 
-  &__width,
-  &__select {
-    &.MuiFormControl-fullWidth,
-    .form-input-base__input {
-      width: 250px;
+  &__width{
+  width: 40%;
+    &.form-input-base {
+      margin-right: 0;
     }
   }
 
+
   &.form-input-base__comments {
+    margin-right: 0;
     &,
     .form-input-base__input {
       width: 100%;
