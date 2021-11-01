@@ -14,6 +14,8 @@ interface FormSelectProps {
     handleChange: any;
     value: string | number;
     label?: string;
+    heightLabel?: boolean
+
     menuItem: Array<string | number>;
 }
 
@@ -21,6 +23,7 @@ const FormSelectBase: React.FC<FormSelectProps> = ({
                                                        className,
                                                        handleChange,
                                                        value,
+                                                       heightLabel=true,
                                                        label,
                                                        menuItem,
                                                    }) => {
@@ -28,7 +31,7 @@ const FormSelectBase: React.FC<FormSelectProps> = ({
 
     return (
         <FormControl fullWidth className={`form-input-base__select ${className}`}>
-            <FormLabel className={`form-input-base__label ${!label && 'form-input-base__not-label'}`}>
+            <FormLabel className={`form-input-base__label ${heightLabel && 'form-input-base__not-label'}`}>
                 {label}
             </FormLabel>
             <Select
