@@ -15,7 +15,7 @@ export  const addTransaction = {
     links: [
       { name: "Exchange OTC Single ", link: "/pages/OTC-Single" },
       { name: "Exchange OTC Linking", link: "/pages/OTC-Linking" },
-      { name: "Private OTC / Cash", link: "/pages" },
+      { name: "Private OTC / Cash", link: "/pages/Cash" },
       { name: "Arbitrage (forks)", link: "/pages/Arbitrage" },
     ],
   };
