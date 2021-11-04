@@ -12,22 +12,18 @@ import React from "react";
 interface FormSelectProps {
     className?: string;
     handleChange: any;
-    value: string | number;
     label?: string;
     heightLabel?: boolean
-
-    menuItem: Array<string | number>;
+    menuItem: {[value: string]: string | number}[];
 }
 
 const FormSelectBase: React.FC<FormSelectProps> = ({
                                                        className,
                                                        handleChange,
-                                                       value,
                                                        heightLabel=true,
                                                        label,
                                                        menuItem,
                                                    }) => {
-
 
     return (
         <FormControl fullWidth className={`form-input-base__select ${className}`}>
@@ -37,11 +33,13 @@ const FormSelectBase: React.FC<FormSelectProps> = ({
             <Select
                 variant="outlined"
                 className={`form-input-base__input `}
-                defaultValue={menuItem[0]}
+                defaultValue={1}
                 onChange={handleChange}
             >
                 {menuItem.map((element, index) => (
-                    <MenuItem value={menuItem[0]}>{element}</MenuItem>
+                    <MenuItem key={index} value={element.value}>
+                        {element.label}
+                    </MenuItem>
                 ))}
             </Select>
         </FormControl>

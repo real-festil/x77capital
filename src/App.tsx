@@ -16,6 +16,7 @@ import CheckBalance from "./pages/CheckBalance";
 import History from "./pages/History";
 import { useEffect } from "react";
 import { useGlobalState } from "./globalState";
+import OtcCash from "./pages/OtcCash";
 
 const App = () => {
   const [loginFollow, setLogin] = useGlobalState("login");
@@ -43,6 +44,9 @@ const App = () => {
             <LeftSideBar />
             <Route path="/pages/OTC-Single">
               <OtcSingle />
+            </Route>
+            <Route path="/pages/Cash">
+              <OtcCash />
             </Route>
             <Route path="/pages/Arbitrage">
               <Arbitrage />

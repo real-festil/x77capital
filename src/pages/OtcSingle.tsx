@@ -80,16 +80,16 @@ const OtcSingle = () => {
                     />
                   )}
                 </Field>
-                <Field name="comeOut">
-                  {({ field, form: { touched, errors } }: FieldProps) => (
-                    <FormSelectBase
-                      label="UAN"
-                      menuItem={["Bank-1"]}
-                      value={valueSelect}
-                      handleChange={handleChange}
-                    />
-                  )}
-                </Field>
+                {/*<Field name="comeOut">*/}
+                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
+                {/*    <FormSelectBase*/}
+                {/*      label="UAN"*/}
+                {/*      menuItem={["Bank-1"]}*/}
+                {/*      value={valueSelect}*/}
+                {/*      handleChange={handleChange}*/}
+                {/*    />*/}
+                {/*  )}*/}
+                {/*</Field>*/}
               </Box>
               <Box className="form-pages__box">
                 <Field name="comeOut">
@@ -104,16 +104,16 @@ const OtcSingle = () => {
                     />
                   )}
                 </Field>
-                <Field name="comeOut">
-                  {({ field, form: { touched, errors } }: FieldProps) => (
-                    <FormSelectBase
-                        heightLabel={false}
-                        menuItem={["Bank-1"]}
-                      value={valueSelect}
-                      handleChange={handleChange}
-                    />
-                  )}
-                </Field>
+                {/*<Field name="comeOut">*/}
+                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
+                {/*    <FormSelectBase*/}
+                {/*        heightLabel={false}*/}
+                {/*        menuItem={["Bank-1"]}*/}
+                {/*      value={valueSelect}*/}
+                {/*      handleChange={handleChange}*/}
+                {/*    />*/}
+                {/*  )}*/}
+                {/*</Field>*/}
               </Box>
               <Box className="form-pages__box">
                 <Field name="comeOut">
@@ -128,16 +128,16 @@ const OtcSingle = () => {
                     />
                   )}
                 </Field>
-                <Field name="comeOut">
-                  {({ field, form: { touched, errors } }: FieldProps) => (
-                    <FormSelectBase
-                        heightLabel={false}
-                      menuItem={["Bank-1"]}
-                      value={valueSelect}
-                      handleChange={handleChange}
-                    />
-                  )}
-                </Field>
+                {/*<Field name="comeOut">*/}
+                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
+                {/*    <FormSelectBase*/}
+                {/*        heightLabel={false}*/}
+                {/*      menuItem={["Bank-1"]}*/}
+                {/*      value={valueSelect}*/}
+                {/*      handleChange={handleChange}*/}
+                {/*    />*/}
+                {/*  )}*/}
+                {/*</Field>*/}
               </Box>
             </Box>
             <Box className="form-pages__sector">
@@ -153,17 +153,17 @@ const OtcSingle = () => {
                     />
                   )}
                 </Field>
-                <Field name="comeIn">
-                  {({ field, form: { touched, errors } }: FieldProps) => (
-                    <FormSelectBase
-                      label="USDT"
+                {/*<Field name="comeIn">*/}
+                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
+                {/*    <FormSelectBase*/}
+                {/*      label="USDT"*/}
 
-                      menuItem={["Exchange-1"]}
-                      value={valueSelect}
-                      handleChange={handleChange}
-                    />
-                  )}
-                </Field>
+                {/*      menuItem={["Exchange-1"]}*/}
+                {/*      value={valueSelect}*/}
+                {/*      handleChange={handleChange}*/}
+                {/*    />*/}
+                {/*  )}*/}
+                {/*</Field>*/}
               </Box>
             </Box>
             <Box className="form-pages__sector">

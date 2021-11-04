@@ -5,6 +5,7 @@ import InputFormBase from "../core/atoms/FormInputBase";
 import SendButton from "../core/atoms/SendButton";
 import { Box, InputAdornment } from "@material-ui/core";
 import FormSelectBase from "../core/atoms/FormSelectBase";
+// import { SelectChangeEvent } from "@material-ui/core";
 
 interface FormValues {
   comeOut: string;
@@ -13,7 +14,7 @@ interface FormValues {
   comments: string;
 }
 
-const Arbitrage = () => {
+const OtcCash = () => {
   const [values, setValues] = useState<FormValues>({
     comeOut: "",
     comeIn: "",
@@ -43,15 +44,29 @@ const Arbitrage = () => {
     return errors;
   };
 
-  const [valueSelect, setSelect] = React.useState("0");
+  const [valueSelect, setSelect] = React.useState("");
+  const [active, setActive] = useState<number>(0);
 
   const handleChange = (event: any) => {
     setSelect(event.target.value as string);
   };
 
+  const handleActive = (item: number): void => {setActive(item)};
+
   return (
     <div className="otc-single container">
-      <Heading className="heading">Arbitrage</Heading>
+      <Heading className="heading">OTC Cash</Heading>
+      <Box className='securep__btns'>
+        <button
+            className={active === 0 ? 'securep-active-btn' : ''}
+            onClick={() => handleActive(0)}
+        >Fiat In</button>
+        <button
+            className={active === 1 ? 'securep-active-btn' : ''}
+            onClick={() => handleActive(1)}
+        >Fiat Out</button>
+
+      </Box>
       <Formik
         initialValues={values}
         validate={validations}
@@ -82,7 +97,56 @@ const Arbitrage = () => {
                 {/*<Field name="comeOut">*/}
                 {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
                 {/*    <FormSelectBase*/}
-                {/*      menuItem={["Exchange-1"]}*/}
+                {/*      label="UAN"*/}
+                {/*      menuItem={["Bank-1"]}*/}
+                {/*      value={valueSelect}*/}
+                {/*      handleChange={handleChange}*/}
+                {/*    />*/}
+                {/*  )}*/}
+                {/*</Field>*/}
+              </Box>
+              <Box className="form-pages__box">
+                <Field name="comeOut">
+                  {({ field, form: { touched, errors } }: FieldProps) => (
+                    <InputFormBase
+                      type="text"
+                      placeholder="Еnter the amount in USDT*"
+                      field={field}
+                      errors={
+                        touched.comeOut && errors.comeOut && errors.comeOut
+                      }
+                    />
+                  )}
+                </Field>
+                {/*<Field name="comeOut">*/}
+                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
+                {/*    <FormSelectBase*/}
+                {/*        heightLabel={false}*/}
+                {/*        menuItem={["Bank-1"]}*/}
+                {/*      value={valueSelect}*/}
+                {/*      handleChange={handleChange}*/}
+                {/*    />*/}
+                {/*  )}*/}
+                {/*</Field>*/}
+              </Box>
+              <Box className="form-pages__box">
+                <Field name="comeOut">
+                  {({ field, form: { touched, errors } }: FieldProps) => (
+                    <InputFormBase
+                      type="text"
+                      placeholder="Еnter the amount in USDT*"
+                      field={field}
+                      errors={
+                        touched.comeOut && errors.comeOut && errors.comeOut
+                      }
+                    />
+                  )}
+                </Field>
+                {/*<Field name="comeOut">*/}
+                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
+                {/*    <FormSelectBase*/}
+                {/*        heightLabel={false}*/}
+                {/*      menuItem={["Bank-1"]}*/}
                 {/*      value={valueSelect}*/}
                 {/*      handleChange={handleChange}*/}
                 {/*    />*/}
@@ -90,7 +154,6 @@ const Arbitrage = () => {
                 {/*</Field>*/}
               </Box>
             </Box>
-
             <Box className="form-pages__sector">
               <Box className="form-pages__box">
                 <Field name="comeIn">
@@ -107,7 +170,9 @@ const Arbitrage = () => {
                 {/*<Field name="comeIn">*/}
                 {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
                 {/*    <FormSelectBase*/}
-                {/*      menuItem={["Exchange-2"]}*/}
+                {/*      label="USDT"*/}
+
+                {/*      menuItem={["Exchange-1"]}*/}
                 {/*      value={valueSelect}*/}
                 {/*      handleChange={handleChange}*/}
                 {/*    />*/}
@@ -117,14 +182,26 @@ const Arbitrage = () => {
             </Box>
             <Box className="form-pages__sector">
               <Box className="form-pages__box">
-                <Field name="profit">
+                <Field name="uanRate">
                   {({ field, form: { touched, errors } }: FieldProps) => (
                     <InputFormBase
-                      className="full-width"
-                      endAdornment="USDT"
                       type="text"
-                      label="Profit:"
-                      placeholder="Profit will be calculated automatically"
+                      label="UAH Rate:"
+                      placeholder="26.75*"
+                      field={field}
+                      errors={
+                        touched.uanRate && errors.uanRate && errors.uanRate
+                      }
+                    />
+                  )}
+                </Field>
+                <Field name="fee">
+                  {({ field, form: { touched, errors } }: FieldProps) => (
+                    <InputFormBase
+                      className="form-input-base__width"
+                      type="text"
+                      label="Fee:"
+                      placeholder="0.12*"
                       field={field}
                       errors={
                         touched.uanRate && errors.uanRate && errors.uanRate
@@ -136,54 +213,20 @@ const Arbitrage = () => {
             </Box>
             <Box className="form-pages__sector">
               <Box className="form-pages__box">
-                <Field name="payOut">
+                <Field name="comments">
                   {({ field, form: { touched, errors } }: FieldProps) => (
                     <InputFormBase
-                      className="full-width margin-center"
-                      endAdornment="%"
+                      className="form-input-base__comments"
                       type="text"
-                      label="PayOut:"
-                      placeholder="0"
+                      label="Comments:"
+                      placeholder="Message"
                       field={field}
                       errors={
-                        touched.uanRate && errors.uanRate && errors.uanRate
+                        touched.comments && errors.comments && errors.comments
                       }
                     />
                   )}
                 </Field>
-                <Field name="commission">
-                  {({ field, form: { touched, errors } }: FieldProps) => (
-                    <InputFormBase
-                      className="full-width"
-                      endAdornment="USDT"
-                      type="text"
-                      label="Commission"
-                      placeholder="0"
-                      field={field}
-                      errors={
-                        touched.uanRate && errors.uanRate && errors.uanRate
-                      }
-                    />
-                  )}
-                </Field>
-              </Box>
-              <Box className="form-pages__sector">
-                <Box className="form-pages__box">
-                  <Field name="comments">
-                    {({ field, form: { touched, errors } }: FieldProps) => (
-                      <InputFormBase
-                        className="form-input-base__comments"
-                        type="text"
-                        label="Comments:"
-                        placeholder="Message"
-                        field={field}
-                        errors={
-                          touched.comments && errors.comments && errors.comments
-                        }
-                      />
-                    )}
-                  </Field>
-                </Box>
               </Box>
             </Box>
             <SendButton>Send</SendButton>
@@ -194,4 +237,4 @@ const Arbitrage = () => {
   );
 };
 
-export default Arbitrage;
+export default OtcCash;

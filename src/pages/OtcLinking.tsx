@@ -75,15 +75,15 @@ const OtcLinking = () => {
                     />
                   )}
                 </Field>
-                <Field name="comeOut">
-                  {({ field, form: { touched, errors } }: FieldProps) => (
-                    <FormSelectBase
-                      menuItem={["Exchange-1"]}
-                      value={valueSelect}
-                      handleChange={handleChange}
-                    />
-                  )}
-                </Field>
+                {/*<Field name="comeOut">*/}
+                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
+                {/*    <FormSelectBase*/}
+                {/*      menuItem={["Exchange-1"]}*/}
+                {/*      value={valueSelect}*/}
+                {/*      handleChange={handleChange}*/}
+                {/*    />*/}
+                {/*  )}*/}
+                {/*</Field>*/}
               </Box>
             </Box>
 
@@ -100,15 +100,15 @@ const OtcLinking = () => {
                     />
                   )}
                 </Field>
-                <Field name="comeIn">
-                  {({ field, form: { touched, errors } }: FieldProps) => (
-                    <FormSelectBase
-                      menuItem={["Exchange-2"]}
-                      value={valueSelect}
-                      handleChange={handleChange}
-                    />
-                  )}
-                </Field>
+                {/*<Field name="comeIn">*/}
+                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
+                {/*    <FormSelectBase*/}
+                {/*      menuItem={["Exchange-2"]}*/}
+                {/*      value={valueSelect}*/}
+                {/*      handleChange={handleChange}*/}
+                {/*    />*/}
+                {/*  )}*/}
+                {/*</Field>*/}
               </Box>
             </Box>
             <Box className="form-pages__sector">
