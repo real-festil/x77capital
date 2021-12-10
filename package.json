@@ -1,6 +1,9 @@
 {
   "name": "x77capital",
   "version": "0.1.0",
+  "engines": {
+    "node" : ">=0.12"
+  },
   "private": true,
   "dependencies": {
     "@dccs/react-searchable-select-mui": "^0.2.11",
