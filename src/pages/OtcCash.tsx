@@ -1,60 +1,64 @@
 import { Field, FieldProps, Form, Formik, FormikErrors } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Heading } from "../core/atoms/Heading";
 import InputFormBase from "../core/atoms/FormInputBase";
 import SendButton from "../core/atoms/SendButton";
 import { Box, InputAdornment } from "@material-ui/core";
 import FormSelectBase from "../core/atoms/FormSelectBase";
+import { getAccounts } from "../common/Inquiries/Accounts";
+import { postPrivate } from "../common/Inquiries/Transactions";
 // import { SelectChangeEvent } from "@material-ui/core";
 
-interface FormValues {
-  comeOut: string;
-  comeIn: string;
-  uanRate: string;
-  comments: string;
-}
-
 const OtcCash = () => {
-  const [values, setValues] = useState<FormValues>({
-    comeOut: "",
-    comeIn: "",
+  const [values, setValues] = useState<any>({
+    comeOut1: "",
+    account1: "",
+    comeOut2: "",
+    account2: "",
+    comeOut3: "",
+    account3: "",
+    comeIn1: "",
+    comeInAccount1: "",
     uanRate: "",
+    fee: "",
     comments: "",
   });
 
-  const validations = (values: FormValues) => {
-    let errors: FormikErrors<FormValues> = {};
+  const [accounts, setAccounts] = useState(null as any);
 
-    if (!values.comeOut) {
-      errors.comeOut = "Required";
-    } else if (!values.comeOut) {
-      errors.comeOut = "Invalid comeOut";
-    }
+  useEffect(() => {
+    handleAccounts();
+  }, []);
 
-    if (!values.comeIn) {
-      console.log("test comeIn", values.comeIn);
+  const handleAccounts = async () => {
+    const res = await getAccounts();
+    setAccounts(res.data);
+  }
 
-      errors.comeIn = "Invalid comeIn";
-    }
-    if (!values.comments) {
-      console.log("test comments", values.comments);
-
-      errors.comments = "Invalid comments";
-    }
+  const validations = (values: any) => {
+    let errors: FormikErrors<any> = {};
     return errors;
   };
 
   const [valueSelect, setSelect] = React.useState("");
   const [active, setActive] = useState<number>(0);
 
-  const handleChange = (event: any) => {
-    setSelect(event.target.value as string);
+  const handleChange = (event: any, setFieldValue: any, field: any) => {
+    console.log(`event.target.value`, event.target)
+    // setSelect(event.target.value as string);
+    setFieldValue(field, event.target.value)
   };
 
   const handleActive = (item: number): void => {setActive(item)};
 
+  const onSubmit = async (values: any) => {
+    const {account1, account2, account3, comeOut1, comeOut2, comeOut3, comments} = values;
+    const res = await postPrivate(comeOut1 * 100, account1, comeOut2 * 100, account2, comeOut3 * 100, account3,  undefined, undefined, comments);
+    console.log(`res`, res)
+  }
+
   return (
-    <div className="otc-single container">
+    <div className="otc-single container" style={{maxHeight: 'calc(100vh - 138px)', overflow: 'auto'}}>
       <Heading className="heading">OTC Cash</Heading>
       <Box className='securep__btns'>
         <button
@@ -71,17 +75,14 @@ const OtcCash = () => {
         initialValues={values}
         validate={validations}
         onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
+          onSubmit(values)
         }}
       >
-        {(props: FormValues) => (
+        {(props: any) => (
           <Form className="form-pages">
             <Box className="form-pages__sector">
               <Box className="form-pages__box">
-                <Field name="comeOut">
+                <Field name="comeOut1">
                   {({ field, form: { touched, errors } }: FieldProps) => (
                     <InputFormBase
                       type="text"
@@ -94,19 +95,20 @@ const OtcCash = () => {
                     />
                   )}
                 </Field>
-                {/*<Field name="comeOut">*/}
-                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
-                {/*    <FormSelectBase*/}
-                {/*      label="UAN"*/}
-                {/*      menuItem={["Bank-1"]}*/}
-                {/*      value={valueSelect}*/}
-                {/*      handleChange={handleChange}*/}
-                {/*    />*/}
-                {/*  )}*/}
-                {/*</Field>*/}
+                {accounts && (
+                  <Field name="account1">
+                  {({ field, form: { touched, errors } }: FieldProps) => (
+                    <FormSelectBase
+                      label="UAN"
+                      menuItem={accounts.map((acc:any) => ({value: acc.id, label: acc.bec.name}))}
+                      handleChange={(e: any) => handleChange(e, props.setFieldValue, 'account1')}
+                    />
+                  )}
+                  </Field>
+                )}
               </Box>
               <Box className="form-pages__box">
-                <Field name="comeOut">
+                <Field name="comeOut2">
                   {({ field, form: { touched, errors } }: FieldProps) => (
                     <InputFormBase
                       type="text"
@@ -118,19 +120,20 @@ const OtcCash = () => {
                     />
                   )}
                 </Field>
-                {/*<Field name="comeOut">*/}
-                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
-                {/*    <FormSelectBase*/}
-                {/*        heightLabel={false}*/}
-                {/*        menuItem={["Bank-1"]}*/}
-                {/*      value={valueSelect}*/}
-                {/*      handleChange={handleChange}*/}
-                {/*    />*/}
-                {/*  )}*/}
-                {/*</Field>*/}
+                {accounts && (
+                  <Field name="account2">
+                  {({ field, form: { touched, errors } }: FieldProps) => (
+                    <FormSelectBase
+                      heightLabel={false}
+                      menuItem={accounts.map((acc:any) => ({value: acc.id, label: acc.bec.name}))}
+                      handleChange={(e: any) => handleChange(e, props.setFieldValue, 'account2')}
+                    />
+                  )}
+                  </Field>
+                )}
               </Box>
               <Box className="form-pages__box">
-                <Field name="comeOut">
+                <Field name="comeOut3">
                   {({ field, form: { touched, errors } }: FieldProps) => (
                     <InputFormBase
                       type="text"
@@ -142,21 +145,22 @@ const OtcCash = () => {
                     />
                   )}
                 </Field>
-                {/*<Field name="comeOut">*/}
-                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
-                {/*    <FormSelectBase*/}
-                {/*        heightLabel={false}*/}
-                {/*      menuItem={["Bank-1"]}*/}
-                {/*      value={valueSelect}*/}
-                {/*      handleChange={handleChange}*/}
-                {/*    />*/}
-                {/*  )}*/}
-                {/*</Field>*/}
+                {accounts && (
+                  <Field name="account3">
+                  {({ field, form: { touched, errors } }: FieldProps) => (
+                    <FormSelectBase
+                      heightLabel={false}
+                      menuItem={accounts.map((acc:any) => ({value: acc.id, label: acc.bec.name}))}
+                      handleChange={(e: any) => handleChange(e, props.setFieldValue, 'account3')}
+                    />
+                  )}
+                  </Field>
+                )}
               </Box>
             </Box>
             <Box className="form-pages__sector">
               <Box className="form-pages__box">
-                <Field name="comeIn">
+                <Field name="comeIn1">
                   {({ field, form: { touched, errors } }: FieldProps) => (
                     <InputFormBase
                       type="text"
@@ -167,17 +171,17 @@ const OtcCash = () => {
                     />
                   )}
                 </Field>
-                {/*<Field name="comeIn">*/}
-                {/*  {({ field, form: { touched, errors } }: FieldProps) => (*/}
-                {/*    <FormSelectBase*/}
-                {/*      label="USDT"*/}
-
-                {/*      menuItem={["Exchange-1"]}*/}
-                {/*      value={valueSelect}*/}
-                {/*      handleChange={handleChange}*/}
-                {/*    />*/}
-                {/*  )}*/}
-                {/*</Field>*/}
+                {accounts && (
+                  <Field name="comeInAccount1">
+                  {({ field, form: { touched, errors } }: FieldProps) => (
+                    <FormSelectBase
+                      label="USDT"
+                      menuItem={accounts.map((acc:any) => ({value: acc.id, label: acc.bec.name}))}
+                      handleChange={(e: any) => handleChange(e, props.setFieldValue, 'comeInAccount1')}
+                    />
+                  )}
+                  </Field>
+                )}
               </Box>
             </Box>
             <Box className="form-pages__sector">

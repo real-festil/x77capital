@@ -1,10 +1,26 @@
 import { Box, Container, MenuItem, Select } from "@material-ui/core";
+import { useState, useEffect } from "react";
+import { getBankAcc } from "../common/Inquiries/BankAccounting";
 
 export default function ProfitLog() {
+  const [bankAccData, setBankAccData] = useState(null as any);
+
+  useEffect(() => {
+    handleProfit();
+  }, [])
+
+  const handleProfit = async () => {
+    const res = await getBankAcc();
+    console.log('data', res.data)
+    setBankAccData(res.data);
+  }
+
+  console.log(`bankAccData`, bankAccData)
+
   return (
     <Container className='profitLog'>
       <Box className='profitLog__head'>
-        <h2>Bank Accounting</h2> 
+        <h2>Bank Accounting</h2>
         <Box>
           <Select className='profitLog-select' defaultValue='September'>
             <MenuItem value='September'>September</MenuItem>
@@ -17,45 +33,32 @@ export default function ProfitLog() {
         </Box>
       </Box>
       <Box className='profitLog__table bankAccounting__table'>
+        {bankAccData && (
         <table>
           <thead>
             <tr>
               <th>Total</th>
-              <th>113298.56</th>
-              <th>113298.56</th>
-              <th>113298.56</th>
-              <th>113298.56</th>
-              <th>113298.56</th>
-              <th>113298.56</th>
+              {bankAccData.total.length > 0 && Object.values(bankAccData.total[0]).filter(item => typeof(item) === 'number').map((item: any) => <th>{item}</th>)}
             </tr>
             <tr>
               <th>Date/Banks</th>
-              <th>Mono</th>
-              <th>Pumb</th>
-              <th>Raiffeisen</th>
-              <th>Todo</th>
-              <th>aBank</th>
-              <th>Privat</th>
+              {bankAccData.accounts.map((item: any) => <th>{item}</th>)}
             </tr>
           </thead>
           <tbody>
             {
-              [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(item => {
+              bankAccData.transactions.map((item: any, index: number) => {
                 return (
-                  <tr key={item}>
-                    <td>01-09</td>
-                    <td>113298.56</td>
-                    <td>113298.56</td>
-                    <td>113298.56</td>
-                    <td>113298.56</td>
-                    <td>113298.56</td>
-                    <td>113298.56</td>
+                  <tr key={index}>
+                    <td>{item.date}</td>
+                    {Object.values(item).filter(item => typeof(item) === 'number').map((item: any) => <td>{item}</td>)}
                   </tr>
                 )
               })
             }
           </tbody>
         </table>
+        )}
       </Box>
       <Box className='bankAccounting__dots'>
         {

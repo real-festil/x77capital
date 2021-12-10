@@ -1,7 +1,7 @@
 import Search from 'react-select';
 import {Box, Container, MenuItem, TextField, Typography} from "@material-ui/core";
 import {Button} from '@material-ui/core';
-import {accountСreation, getAccounts, getBec, getUser} from "../common/Inquiries/SettinsAPI";
+import {accountDelete, accountСreation, getAccounts, getBec, getUser} from "../common/Inquiries/SettinsAPI";
 import {useGlobalState} from "../globalState";
 import React, {useEffect, useState} from "react";
 import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
@@ -9,6 +9,7 @@ import FormSelectBase from "../core/atoms/FormSelectBase";
 import {FormatOptionLabelContext, FormatOptionLabelMeta} from "react-select/dist/declarations/src/Select";
 
 interface DProps {
+    id: number;
     bec: {
         id: string | number
         name: string
@@ -22,7 +23,7 @@ interface DProps {
 export default function Settings() {
     const [token, setToken] = useGlobalState("token");
     const [data, setData] = useState<DProps[]>([])
-    const [optionsName, setOptionsName] = React.useState({arr: [], active: ''});
+    const [optionsName, setOptionsName] = React.useState({arr: [{label: '', value: ''}], active: ''});
     const [optionsExchange, setOptionsExchange] = React.useState({
         arr: [{label: '', value: ''}],
         active: ''
@@ -40,8 +41,9 @@ export default function Settings() {
 
     const createAccount = async () => {
         const response = await accountСreation({
-            user: optionsName.active,
+            user: optionsName.arr.find((x: any) => optionsName.active === x.label)!.value!,
             bec:{
+                bec_id: optionsExchange.arr.find((x: any) => optionsExchange.active === x.label)!.value,
                 name: optionsExchange.active,
                 type: 1,
                 currency: 'UAN'
@@ -53,7 +55,8 @@ export default function Settings() {
             console.log('errors', response.errors)
         } else {
             console.log('response', response?.data)
-            setData(response?.data)
+            // setData(response?.data)
+            accounts();
         }
     };
 
@@ -92,6 +95,11 @@ export default function Settings() {
         console.log('optionsExchange', optionsExchange)
     };
 
+    const onDelete = async (id: number) => {
+      const res = await accountDelete(id, token);
+      accounts();
+    }
+
 
     useEffect(() => {
         getAccountName()
@@ -104,6 +112,9 @@ export default function Settings() {
             setOptionsExchange({...optionsExchange, active: optionsExchange.arr[0]?.label})
         }
     }, [optionsExchange.arr])
+
+    console.log(optionsExchange);
+    console.log('optionsName', optionsName)
 
     return (
         <Container className='profitLog'>
@@ -162,13 +173,13 @@ export default function Settings() {
                                 <Box className='settings__table-wrap-item'>
                                     <Box className='settings__table-item'>
                                         <p>{items.bec?.name}</p>
-                                        <Button variant="text" onClick={() => items.bec.id}>Delete</Button>
+                                        <Button variant="text" onClick={() => onDelete(items.id)}>Delete</Button>
                                     </Box>
                                 </Box>
                                 <Box className='settings__table-wrap-item'>
                                     <Box className='settings__table-item'>
                                         <p>{items.user?.user_name}</p>
-                                        <Button variant="text" onClick={() => items.user.id}>Delete</Button>
+                                        <Button variant="text" onClick={() => onDelete(items.id)}>Delete</Button>
                                     </Box>
                                 </Box>
                             </div>)}

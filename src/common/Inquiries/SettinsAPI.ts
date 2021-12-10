@@ -11,6 +11,7 @@ export interface AccountEditModel extends SettingsModel{
 export interface AccountСreationModel extends SettingsModel{
     user: string
     bec: {
+        bec_id: string
         name: string
         type: string | number
         currency: string
@@ -48,7 +49,7 @@ export const getBec = async ({token}: SettingsModel) => {
 
 export const accountСreation = async ({user, bec, token}: AccountСreationModel) => {
     const response = await useHttp.post(`/structure/settings/create/`,{
-        bec: bec,
+        bec: bec.bec_id,
         user: user
         },
         {headers: {'Authorization': `Token ${token}`}})
@@ -60,6 +61,16 @@ export const accountСreation = async ({user, bec, token}: AccountСreationModel
 
 export const accountEdit = async ({token,accountId }: AccountEditModel) => {
     const response = await useHttp.post(`/structure/settings/${accountId}/`,{},
+        {headers: {'Authorization': `Token ${token}`}})
+        .catch(error_ => {
+            return error_.response?.data
+        });
+    return response
+}
+
+export const accountDelete = async (id: number, token: string) => {
+  const response = await useHttp.post(`/structure/accdel/${id}`,
+        {},
         {headers: {'Authorization': `Token ${token}`}})
         .catch(error_ => {
             return error_.response?.data

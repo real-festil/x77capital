@@ -1,9 +1,11 @@
 import { ButtonBase } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getBalances } from "../common/Inquiries/Balances";
 
 const RightSideBar = () => {
   const [active, setActive] = useState(false);
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [balancesData, setBalancesData] = useState(null as any);
 
   const handleTab = (item: number): void => {setActiveTab(item)};
   const renderActiveClass = (i: number) => {
@@ -11,6 +13,26 @@ const RightSideBar = () => {
       return 'activeTab';
     }
   }
+
+  useEffect(() => {
+    handleProfit();
+  }, [])
+
+  useEffect(() => {
+    if (active) {
+      setBalancesData(balancesData.filter((b: any) => b.actual_balance))
+    } else {
+      handleProfit();
+    }
+  }, [active])
+
+  const handleProfit = async () => {
+    const res = await getBalances();
+    console.log(res);
+    setBalancesData(res.data);
+  }
+
+  console.log(`balancesData`, balancesData)
 
   return (
     <div className="right-side-bar">
@@ -27,43 +49,19 @@ const RightSideBar = () => {
           </div>
         </div>
           <WrapUlTab active={activeTab} i={0}>
-            <li>Bank-1: 2567 UAH</li>
-            <li>Bank-2: 2567 UAH</li>
-            <li>Bank-3: 2567 UAH</li>
-            <li>Bank-4: 2567 UAH</li>
-            <li>Bank-5: 2567 UAH</li>
-            <li>Bank-6: 2567 UAH</li>
-            <li>Bank-1: 2567 UAH</li>
-            <li>Bank-2: 2567 UAH</li>
-            <li>Bank-3: 2567 UAH</li>
-            <li>Bank-4: 2567 UAH</li>
-            <li>Bank-5: 2567 UAH</li>
+            {balancesData && balancesData.filter((item: { bec: { type: string; }; }) => item.bec.type === '1').map((item: { bec: { name: any; currency: any; }; id: any, actual_balance: any; }) => (
+              <li key={item.id}>{`${item.bec.name}: ${item.actual_balance || 0} ${item.bec.currency}`}</li>
+            ))}
           </WrapUlTab>
           <WrapUlTab active={activeTab} i={1}>
-            <li>Exchange-1: 2567 UAH</li>
-            <li>Exchange-2: 2567 UAH</li>
-            <li>Exchange-3: 2567 UAH</li>
-            <li>Exchange-4: 2567 UAH</li>
-            <li>Exchange-5: 2567 UAH</li>
-            <li>Exchange-6: 2567 UAH</li>
-            <li>Exchange-1: 2567 UAH</li>
-            <li>Exchange-2: 2567 UAH</li>
-            <li>Exchange-3: 2567 UAH</li>
-            <li>Exchange-4: 2567 UAH</li>
-            <li>Exchange-5: 2567 UAH</li>
+            {balancesData && balancesData.filter((item: { bec: { type: string; }; }) => item.bec.type === '2').map((item: { bec: { name: any; currency: any; }; id: any, actual_balance: any; }) => (
+              <li key={item.id}>{`${item.bec.name}: ${item.actual_balance || 0} ${item.bec.currency}`}</li>
+            ))}
           </WrapUlTab>
           <WrapUlTab active={activeTab} i={2}>
-            <li>Cashe-1: 2567 UAH</li>
-            <li>Cashe-2: 2567 UAH</li>
-            <li>Cashe-3: 2567 UAH</li>
-            <li>Cashe-4: 2567 UAH</li>
-            <li>Cashe-5: 2567 UAH</li>
-            <li>Cashe-6: 2567 UAH</li>
-            <li>Cashe-1: 2567 UAH</li>
-            <li>Cashe-2: 2567 UAH</li>
-            <li>Cashe-3: 2567 UAH</li>
-            <li>Cashe-4: 2567 UAH</li>
-            <li>Cashe-5: 2567 UAH</li>
+            {balancesData && balancesData.filter((item: { bec: { type: string; }; }) => item.bec.type === '3').map((item: { bec: { name: any; currency: any; }; id: any, actual_balance: any; }) => (
+              <li key={item.id}>{`${item.bec.name}: ${item.actual_balance || 0} ${item.bec.currency}`}</li>
+            ))}
           </WrapUlTab>
       </div>
       <div className="following-container">

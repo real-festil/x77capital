@@ -14,7 +14,7 @@ interface FormSelectProps {
     handleChange: any;
     label?: string;
     heightLabel?: boolean
-    menuItem: {[value: string]: string | number}[];
+    menuItem: any;
 }
 
 const FormSelectBase: React.FC<FormSelectProps> = ({
@@ -36,7 +36,7 @@ const FormSelectBase: React.FC<FormSelectProps> = ({
                 defaultValue={1}
                 onChange={handleChange}
             >
-                {menuItem.map((element, index) => (
+                {menuItem.map((element: any, index: number) => (
                     <MenuItem key={index} value={element.value}>
                         {element.label}
                     </MenuItem>
